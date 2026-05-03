@@ -49,9 +49,9 @@ auth_Router.post("/login",async(req,res)=>
       return res.status(401).json({ error: "Invalid credentials" });
     }
     const jwt_token=user.get_jwt();
-    
+  
         res.cookie("token",jwt_token);
-       res.status(200).json({ message: "Login successful", userId: user._id });
+       res.status(200).json({ message: "Login successful", user: user});
 });
 
 auth_Router.post("/logout", (req, res) => {

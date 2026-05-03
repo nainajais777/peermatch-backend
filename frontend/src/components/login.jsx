@@ -1,11 +1,16 @@
 import { useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+//import { addUser } from "/home/naina/PeerMatch/frontend/utils/userSlice"
+import { addUser } from "../../utils/userSlice";
+import { BASE_URL } from "../../utils/constants";
 const Login = () =>{
 
 const [forms,setForms]=useState({
   email:'',
   password:''  
 });
+const dispatch=useDispatch();
 const [submit,setSubmit]=useState('');
 
 function handleInput(e)
@@ -27,15 +32,16 @@ function handleSubmit(e)
     alert('Password required!')
     return
   }
-  axios.post("http://localhost:2001/auth/login",{
+  axios.post(`${BASE_URL}/auth/login`,{
     emailId: forms.email,     //  backend name similar 
     Password: forms.password  
   }, {
-  withCredentials: true   // ❗ ADD THIS
+  withCredentials: true   // for http to work
 })
   .then(res=>
   {
     console.log(res.data);
+    dispatch(addUser(res.data));
     alert("Login successful");
   })
   .catch(err => {

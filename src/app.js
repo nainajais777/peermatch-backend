@@ -4,6 +4,13 @@ const validator_check=require('../utils/validation');
 const connect=require('../config/database');
 const User=require('../model/db_schema');
 const cookieParser = require("cookie-parser");
+const cors=require('cors');
+
+//app.use(cors());
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true
+}));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -31,7 +38,7 @@ app.listen(2001,()=>{
 catch(err)
 {
     //res.status(401).send("database conection failed");
-        console.log("server not working properly");
+     console.log("ERROR:", err); 
 
 }
 })();

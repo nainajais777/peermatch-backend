@@ -17,7 +17,7 @@ const user=req.user;
         emailId: user.emailId,
         gender: user.Gender,
         age: user.age,
-        photoUrl: user.PhotoUrl,
+        PhotoUrl: user.PhotoUrl,
         skills: user.Skills
       }
 })
